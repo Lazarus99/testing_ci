@@ -34,3 +34,4 @@ jobs:
         run: |
           echo a new actions to build this new app,
           echo test, and deploy your project.
+          echo new line added in this multi-line step
