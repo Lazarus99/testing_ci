@@ -40,7 +40,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ vars.DOCKER_HUB_USERNAME }}/test_app:latest
+          tags: ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
