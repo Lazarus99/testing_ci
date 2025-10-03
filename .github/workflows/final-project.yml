@@ -59,4 +59,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: your-dockerhub-username/docker-npm-test:latest
+          tags: ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
