@@ -50,7 +50,12 @@ jobs:
           # Fetch response and check contents
           RESPONSE=$(curl --fail http://localhost:3000)
           echo "Response: $RESPONSE"
-          echo "$RESPONSE" | grep -q "Hello, CI Pipeline!"
+          if [ "$RESPONSE" = "Hello, CI Pipeline!" ]; then
+            echo "✅ Response matches expected output"
+          else
+            echo "❌ Response does not match expected output"
+            exit 1
+          fi
 
       - name: Stop container
         if: always()
