@@ -69,3 +69,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
+
+      - name: Remove old image if exists
+        run: |
+          docker rmi -f ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest || true
+          docker rmi -f testing_ci_cd:latest || true
