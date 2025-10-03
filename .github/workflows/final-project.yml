@@ -45,13 +45,13 @@ jobs:
 
       - name: Run Container
         run: |
-          docker run -d -p 3000:3000 --name app-testing testing_ci_cd:latest
+          docker run -d -p 3000:3000 --name app-testing ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
           sleep 5
           curl --fail http://localhost:3000
 
       - name: Stop container
         if: always()
-        run: docker rm -f testing_ci_cd || true
+        run: docker rm -f app-testing || true
 
       - name: Push image
         uses: docker/build-push-action@v5
