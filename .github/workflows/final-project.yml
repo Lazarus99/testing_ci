@@ -47,7 +47,10 @@ jobs:
         run: |
           docker run -d -p 3000:3000 --name app-testing ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
           sleep 5
-          curl --fail http://localhost:3000
+          # Fetch response and check contents
+          RESPONSE=$(curl --fail http://localhost:3000)
+          echo "Response: $RESPONSE"
+          echo "$RESPONSE" | grep -q "Hello, CI Pipeline!"
 
       - name: Stop container
         if: always()
