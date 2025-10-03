@@ -45,7 +45,7 @@ jobs:
 
       - name: Run Container
         run: |
-          docker run -d -p 3000:3000 --name testing_ci_cd testing_ci_cd:latest
+          docker run -d -p 3000:3000 --name app-testing testing_ci_cd:latest
           sleep 5
           curl --fail http://localhost:3000
 
