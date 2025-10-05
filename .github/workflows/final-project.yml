@@ -73,9 +73,22 @@ jobs:
         run: docker rm -f app-testing || true
 
       - name: Push image
+        if: success()
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
           push: true
           tags: ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
+
+      # Save and upload logs even if tests fail
+      - name: Save container logs
+        if: always()
+        run: docker logs app-testing > app_logs.txt || echo "no logs"
+      
+      - name: Upload logs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-logs
+          path: app_logs.txt
