@@ -35,6 +35,13 @@ jobs:
       - name: set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Remove old images (cleanup)
+        run: |
+          docker stop app-testing || true
+          docker rm -f app-testing || true
+          docker rmi -f ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest || true
+          docker rmi -f testing_ci_cd:latest || true
+
       - name: Build image
         uses: docker/build-push-action@v5
         with:
@@ -71,8 +78,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
-
-      - name: Remove old image if exists
-        run: |
-          docker rmi -f ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest || true
-          docker rmi -f testing_ci_cd:latest || true
