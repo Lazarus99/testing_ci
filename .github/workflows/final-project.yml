@@ -48,10 +48,11 @@ jobs:
           context: .
           file: ./Dockerfile
           push: false
+          load: true
           no-cache: true
           tags: |
-            testing_ci_cd:latest
             ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
+            testing_ci_cd:latest
 
       - name: Run Container
         run: |
