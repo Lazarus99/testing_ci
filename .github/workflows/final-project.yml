@@ -55,7 +55,7 @@ jobs:
 
       - name: Run Container
         run: |
-          docker run -d -p 3000:3000 --name app-testing ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
+          docker run -d -p 3000:3000 --name app-testing testing_ci_cd:latest
           sleep 5
           # Fetch response and check contents
           RESPONSE=$(curl --fail http://localhost:3000)
