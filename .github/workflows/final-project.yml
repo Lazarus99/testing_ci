@@ -50,7 +50,6 @@ jobs:
           push: false
           no-cache: true
           tags: |
-            ${{ vars.DOCKER_HUB_USERNAME }}/testing_ci_cd:latest
             testing_ci_cd:latest
 
       - name: Run Container
